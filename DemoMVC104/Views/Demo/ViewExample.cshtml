@@ -1,0 +1,14 @@
+@{
+    ViewData["Title"] = "Ví dụ tạo view tương ứng";
+}
+
+<h1>@ViewBag.Message</h1>
+<p>Nội dung hiển thị khi action trả về <b>ViewResult</b>.</p>
+
+<ul>
+    <li><a href="/Demo/RedirectExample">Chuyển hướng đến Google (RedirectResult)</a></li>
+    <li><a href="/Demo/RedirectToActionExample">Chuyển hướng trong ứng dụng (RedirectToActionResult)</a></li>
+    <li><a href="/Demo/JsonExample">Xem dữ liệu JSON (JsonResult)</a></li>
+    <li><a href="/Demo/FileExample">Tải file mẫu (FileResult)</a></li>
+    <li><a href="/Demo/StatusExample?code=404">Trả về mã 404 (StatusCodeResult)</a></li>
+</ul>
