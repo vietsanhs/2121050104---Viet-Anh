@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Trang Demo - ViewBag & ViewData";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3> ViewData:</h3>
+<p>@ViewData["Message"]</p>
+
+<h3> ViewBag:</h3>
+<p>Họ tên: @ViewBag.Name</p>
+<p>Tuổi: @ViewBag.Age</p>
+<p>Ghi chú: @ViewBag.Note</p>
+
+<hr />
+<p><a href="/DemoData/RedirectPage">Chuyển sang trang khác (dùng TempData)</a></p>

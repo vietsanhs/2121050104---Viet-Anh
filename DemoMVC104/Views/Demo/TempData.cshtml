@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Hiển thị TempData";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["Alert"] != null)
+{
+    <div style="padding:10px; background-color:#fffae6; border:1px solid #e0d000;">
+        <b>@TempData["Alert"]</b>
+    </div>
+}
+else
+{
+    <p> Không có dữ liệu trong TempData (đã dùng xong).</p>
+}
+
+<hr />
+<a href="/DemoData/Index">← Quay lại trang chính</a>
