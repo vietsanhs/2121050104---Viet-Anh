@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 
-namespace DemoMVC104.Controllers.
+namespace DemoMVC104.Controllers
 {
     public class DemoController : Controller
     {
