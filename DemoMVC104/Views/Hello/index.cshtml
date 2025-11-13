@@ -1,0 +1,34 @@
+@model DemoMVC104.Models.HelloViewModel
+
+@{
+    ViewData["Title"] = "Chào bạn";
+}
+
+<h2>Nhập tên của bạn</h2>
+
+<form asp-action="Index" asp-controller="Hello" method="post">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Họ và tên:</label><br/>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName" style="color: orange"></span>
+    </div>
+
+    <div>
+        <label>Năm sinh:</label><br/>
+        <input asp-for="YearOfBirth" class="form-control" />
+        <span asp-validation-for="YearOfBirth" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Gửi ngay</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <h3>@Model.Message</h3>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

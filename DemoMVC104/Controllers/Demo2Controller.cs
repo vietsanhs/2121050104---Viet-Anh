@@ -12,6 +12,9 @@ namespace DemoMVC104.Controllers
             return View(); // Views/Demo/ViewExample.cshtml
         }
 
+
+
+
         // 2. RedirectResult → Chuyển hướng đến URL ngoài
         public IActionResult RedirectExample()
         {

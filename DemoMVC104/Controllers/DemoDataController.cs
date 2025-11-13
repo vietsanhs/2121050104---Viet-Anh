@@ -8,7 +8,7 @@ namespace FirstWebMVC.Controllers
         public IActionResult Index()
         {
             ViewData["Title"] = "Ví dụ về ViewData và ViewBag";
-            ViewData["Message"] = "Xin chào từ ViewData 👋";
+            ViewData["Message"] = "Xin chào từ ViewData ";
 
             ViewBag.Name = "Việt Anh";
             ViewBag.Age = 22;
@@ -20,7 +20,7 @@ namespace FirstWebMVC.Controllers
         // Gửi dữ liệu bằng TempData và chuyển hướng
         public IActionResult RedirectPage()
         {
-            TempData["Alert"] = "Dữ liệu này đi qua Redirect nhờ TempData 🚀";
+            TempData["Alert"] = "Dữ liệu này đi qua Redirect nhờ TempData ";
             return RedirectToAction("ShowTempData");
         }
 

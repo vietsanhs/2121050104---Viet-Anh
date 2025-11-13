@@ -11,7 +11,7 @@ namespace DemoMVC104.Controllers
         {
             return View();
         }
-`
+
         // Nhận dữ liệu từ form 
         [HttpPost]
         public IActionResult Create(Student std)
