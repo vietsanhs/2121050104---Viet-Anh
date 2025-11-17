@@ -1,0 +1,25 @@
+<form asp-action="Index" method="Post">
+
+     <label>Nhập tên</label>
+     <input type="text" name="HoTen" placehorder="Nhập tên"></input>
+     <br/>
+
+     <label>Email</label>
+     <input type="text" name="Email" placehorder="Nhập email"></input>
+     <br/>
+
+
+     <label>Số điện thoại</label>
+     <input type="text" name="SốĐT" placehorder="Nhập sđt"></input>
+     <br/>
+
+    <button type="submit">Gửi ngay</button>
+
+
+</form>
+
+@if (ViewBag.ThongBao !=null)
+{
+     
+    <p>@Html.Raw(ViewBag.ThongBao)</p>
+}

@@ -1,0 +1,18 @@
+<form asp-action="Index" method="post">
+            <label>Nhập a:</label>
+            <input type="number" step="any" name="a" />
+
+            <label>Nhập b</label>
+            <input type="number" step="any" name="b"/>
+
+            <label>Nhập c</label>
+            <input type="number" step="any" name="c"/>
+
+            <button type="submit">Gửi ngay</button>
+
+</form>
+
+@if (ViewBag.ThongBao !=null)
+{
+    <p>@Html.Raw(ViewBag.ThongBao)</p>
+}
