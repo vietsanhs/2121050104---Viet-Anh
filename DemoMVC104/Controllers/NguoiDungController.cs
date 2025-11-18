@@ -16,5 +16,7 @@ namespace DemoMVC104.Controllers
             ViewBag.ThongBao = $"Tên của bạn:{HoTen}<br/>  Email:{Email}<br/>  Số điện thoại:{SốĐT}<br/>";
             return View();
         }
+
+        
     }
 }
