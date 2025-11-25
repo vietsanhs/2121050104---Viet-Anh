@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoMVC104.Models
 {
-    [Table("Person")]
+    [Table("VietAnh")]
 
-    public class Person
+    public class VietAnh
     {
         
         [Key]

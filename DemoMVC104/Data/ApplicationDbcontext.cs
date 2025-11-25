@@ -7,8 +7,11 @@ namespace DemoMVC104.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            
         }
 
         public DbSet<Person> Person { get; set; }
+
+        public DbSet<VietAnh> VietAnh { get; set; }
     }
 }

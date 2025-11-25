@@ -27,6 +27,9 @@ namespace DemoMVC104.Controllers
             return View();
         }
 
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PersonId,FullName,Address")] Person person)
@@ -53,6 +56,9 @@ namespace DemoMVC104.Controllers
             }
             return View(person);
         }
+
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -85,6 +91,9 @@ namespace DemoMVC104.Controllers
             }
             return View(person);
         }
+
+
+
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Person == null)
@@ -99,8 +108,10 @@ namespace DemoMVC104.Controllers
                 return NotFound();
             }
 
-            return View(person);
+             return View(person);
         }
+
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
