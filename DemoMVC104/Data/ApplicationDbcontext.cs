@@ -13,5 +13,6 @@ namespace DemoMVC104.Data
         public DbSet<Person> Person { get; set; }
 
         public DbSet<VietAnh> VietAnh { get; set; }
+        public DbSet<DemoMVC104.Models.AnhViet> AnhViet { get; set; } = default!;
     }
 }

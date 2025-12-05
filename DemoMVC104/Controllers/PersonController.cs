@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DemoMVC104.Data;
 using DemoMVC104.Models;
+using DemoMVC104.Models.Process;
+
 
 
 
@@ -11,6 +13,7 @@ namespace DemoMVC104.Controllers
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private ExcelProcess _excelProcess = new ExcelProcess();
 
         public PersonController(ApplicationDbContext context)
         {
@@ -35,14 +38,14 @@ namespace DemoMVC104.Controllers
         public async Task<IActionResult> Create([Bind("PersonId,FullName,Address")] Person person)
         {
             if (ModelState.IsValid)
-            {
+            {  
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(person);
         }
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string id)                            // HttpGet
         {
             if (id == null || _context.Person == null)
             {
@@ -55,6 +58,7 @@ namespace DemoMVC104.Controllers
                 return NotFound();
             }
             return View(person);
+
         }
 
 
@@ -62,7 +66,7 @@ namespace DemoMVC104.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address")] Person person)
+        public async Task<IActionResult> Edit(string id, [Bind("PersonId,FullName,Address")] Person person)                   //HttpPost
         {
             if (id != person.PersonId)
             {
@@ -71,7 +75,7 @@ namespace DemoMVC104.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+                try  
                 {
                     _context.Update(person);
                     await _context.SaveChangesAsync();
@@ -134,6 +138,65 @@ namespace DemoMVC104.Controllers
         {
             return (_context.Person?.Any(e => e.PersonId == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Upload()
+{
+    return View();
+}
+
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Upload(IFormFile file)
+{
+    if (file != null)
+    {
+        string fileExtension = Path.GetExtension(file.FileName);
+
+        if (fileExtension != ".xls" && fileExtension != ".xlsx")
+        {
+            ModelState.AddModelError("", "Please choose an Excel file to upload!");
+        }
+        else
+        {
+            // Folder an toàn
+            var uploadFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Uploads", "Excels");
+            if (!Directory.Exists(uploadFolder))
+                Directory.CreateDirectory(uploadFolder);
+
+            // FileName hợp lệ
+            var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + fileExtension;
+            var filePath = Path.Combine(uploadFolder, fileName);
+
+            // Lưu file
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // Đọc dữ liệu từ Excel
+            var dt = _excelProcess.ExcelToDataTable(filePath);
+
+            // Lưu vào database
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                var ps = new Person
+                {
+                    PersonId = dt.Rows[i][0].ToString(),
+                    FullName = dt.Rows[i][1].ToString(),
+                    Address = dt.Rows[i][2].ToString()
+                };
+                _context.Add(ps);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+    }
+
+    return View();
+}
+
+
 
     }
 }
